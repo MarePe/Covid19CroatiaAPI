@@ -1,4 +1,5 @@
 ﻿using Covid19CroatiaAPI.Entities;
+using Covid19CroatiaAPI.Helpers;
 using Covid19CroatiaAPI.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -20,23 +21,19 @@ namespace Covid19CroatiaAPI.Data
 
                 for (int i = 0; i < retrievedDailyCovidOverviews.Length; i++)
                 {
-                    DailyCovidOverview current = retrievedDailyCovidOverviews[i];
-                    if (i != 0)
+                    DailyCovidOverview recordToBeAdded;
+                    if (i > 0)
                     {
-                        DailyCovidOverview previous = retrievedDailyCovidOverviews[i - 1];
-                        current.DailyNewConfirmed = current.TotalConfirmed - previous.TotalConfirmed;
-                        current.DailyNewDeaths = current.TotalDeaths - previous.TotalDeaths;
-                        current.DailyNewRecovered = current.TotalRecovered - previous.TotalRecovered;
+                        recordToBeAdded = DailyCovidOverviewHelpers.PrepareNewRecord(retrievedDailyCovidOverviews[i], retrievedDailyCovidOverviews[i - 1]);
                     }
                     else
                     {
-                        current.DailyNewConfirmed = current.TotalConfirmed;
-                        current.DailyNewDeaths = current.TotalDeaths;
-                        current.DailyNewRecovered = current.TotalRecovered;
+                        recordToBeAdded = DailyCovidOverviewHelpers.PrepareNewFirstRecord(retrievedDailyCovidOverviews[i]);
                     }
 
-                    context.DailyCovidOverviews.Add(current);
+                    context.DailyCovidOverviews.Add(recordToBeAdded);
                 }
+
 
                 context.SaveChanges();
 

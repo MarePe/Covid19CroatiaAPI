@@ -24,7 +24,7 @@ namespace Covid19CroatiaAPI.Helpers
         }
 
         /// <summary>
-        /// Create new entity object from data for two consecutive days.
+        /// Creates new entity object from data for two consecutive days.
         /// </summary>
         /// <param name="dayD"></param>
         /// <param name="dayBeforeD"></param>
@@ -41,6 +41,29 @@ namespace Covid19CroatiaAPI.Helpers
             recordToBePersisted.DailyNewConfirmed = dayD.TotalConfirmed - dayBeforeD.TotalConfirmed;
             recordToBePersisted.DailyNewDeaths = dayD.TotalDeaths - dayBeforeD.TotalDeaths;
             recordToBePersisted.DailyNewRecovered = dayD.TotalRecovered - dayBeforeD.TotalRecovered;
+
+            return recordToBePersisted;
+
+        }
+
+
+        /// <summary>
+        /// Creates new entity object for the first day of pandemic.
+        /// </summary>
+        /// <param name="dayD"></param>
+        /// <returns></returns>
+        public static DailyCovidOverview PrepareNewFirstRecord(DailyCovidOverview dayD)
+        {
+            DailyCovidOverview recordToBePersisted = new DailyCovidOverview();
+
+            recordToBePersisted.Date = dayD.Date;
+            recordToBePersisted.TotalConfirmed = dayD.TotalConfirmed;
+            recordToBePersisted.TotalDeaths = dayD.TotalDeaths;
+            recordToBePersisted.TotalRecovered = dayD.TotalRecovered;
+
+            recordToBePersisted.DailyNewConfirmed = dayD.TotalConfirmed;
+            recordToBePersisted.DailyNewDeaths = dayD.TotalDeaths;
+            recordToBePersisted.DailyNewRecovered = dayD.TotalRecovered;
 
             return recordToBePersisted;
 
