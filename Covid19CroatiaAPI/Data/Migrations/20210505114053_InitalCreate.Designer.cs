@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Covid19CroatiaAPI.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210501205901_InitalCreate")]
+    [Migration("20210505114053_InitalCreate")]
     partial class InitalCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
