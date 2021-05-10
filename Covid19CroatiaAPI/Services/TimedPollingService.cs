@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace Covid19CroatiaAPI.Services
 {
+    /// <summary>
+    /// A service that checks periodically if there is new data available on the remote server.
+    /// </summary>
     public class TimedPollingService : IHostedService, IDisposable
     {
         private readonly ILogger<TimedPollingService> _logger;
@@ -62,13 +65,6 @@ namespace Covid19CroatiaAPI.Services
                     {
                         DailyCovidOverview recordToBePersisted = DailyCovidOverviewHelpers.PrepareNewRecord(externalDayD, externalDayBefore);
                         context.DailyCovidOverviews.Add(recordToBePersisted);
-                    }
-
-                    // if there is, check if data from our db matches external data. If there are differences, update our db.
-                    else if (!DailyCovidOverviewHelpers.CheckTotals(externalDayD, internalDayD))
-                    {
-                        internalDayD.UpdateEntityObject(externalDayD, externalDayBefore);
-                        context.Update(internalDayD);
                     }
 
                     context.SaveChanges();

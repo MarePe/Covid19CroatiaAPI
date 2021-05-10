@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace Covid19CroatiaAPI.Models
 {
+    /// <summary>
+    /// Contains daily Covid data that is returned to the client.
+    /// </summary>
     public class DailyCovidResult
     {
         public DateTime Date { get; set; }

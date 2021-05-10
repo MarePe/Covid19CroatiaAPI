@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace Covid19CroatiaAPI.Services
 {
+    /// <summary>
+    /// A service that fetches the data from the external server.
+    /// </summary>
     public class CovidStatsService : ICovidStatsService
     {
         private HttpClient _httpClient;

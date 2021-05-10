@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Covid19CroatiaAPI.Data
 {
+    /// <summary>
+    /// Performs initial seeding of the local database with the data that is fetched from the remote server.
+    /// </summary>
     public class DbInitializer
     {
         public static async Task InitializeAsync(AppDbContext context, ICovidStatsService covidStatsService)

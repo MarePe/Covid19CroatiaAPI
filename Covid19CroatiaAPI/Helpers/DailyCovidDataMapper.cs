@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Covid19CroatiaAPI.Helpers
 {
+    /// <summary>
+    /// Transforms entity object to an object that is returned to the client.
+    /// </summary>
     public class DailyCovidDataMapper
     {
         public static DailyCovidResult Map(DailyCovidOverview entity)
